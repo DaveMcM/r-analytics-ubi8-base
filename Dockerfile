@@ -1,7 +1,7 @@
 FROM quay.io/davemcm/r-base-ubi8:latest 
 
-ENV SUMMARY="" \
-    DESCRIPTION=""
+ENV SUMMARY="R software container providing R language and environment" \
+    DESCRIPTION="R is a language and environment for statistical computing and graphics"
 
 LABEL summary="$SUMMARY" \
       description="$DESCRIPTION" \
@@ -25,6 +25,7 @@ RUN ln -s /opt/R/${R_VERSION}/bin/R /usr/bin/R  && \
     ln -s /opt/R/${R_VERSION}/bin/Rscript /usr/bin/Rscript && \
     ln -s /opt/R/${R_VERSION}/lib/R /usr/lib/R
 
+# Need to put check in here to see if java is installed
 RUN R CMD javareconf
 
 # Drop the root user and make the content of /opt/app-root owned by user 1001
